@@ -1,0 +1,96 @@
+# Architecture Decision Records
+
+## ADR-001 — Use DocumentGroup for file handling
+
+**Date:** 2026-05-13  
+**Status:** Accepted
+
+### Context
+The app needs to open markdown files from Finder, the command line, and drag-and-drop. We could manage file access manually (NSOpenPanel + security-scoped bookmarks) or use the system-provided document model.
+
+### Decision
+Use `DocumentGroup` with `FileDocument`. The system handles sandboxed file access, recent documents, window titling, and the Open dialog automatically.
+
+### Consequences
+- No custom file picker code needed.
+- App is strictly a viewer (no write path), so `FileDocument` conformance is minimal.
+- Cannot hold multiple files open in a single window (one document per window), which is acceptable for a viewer.
+
+---
+
+## ADR-002 — Use swift-markdown-ui for rendering
+
+**Date:** 2026-05-13  
+**Status:** Accepted
+
+### Context
+We need rich markdown rendering: headings, code blocks, tables, task lists, images, inline styles. Options considered:
+1. `AttributedString` with custom markdown parsing — limited, no tables or images.
+2. `WKWebView` rendering HTML — heavyweight, non-native look, sandboxing complexity.
+3. `swift-markdown-ui` — pure SwiftUI, GFM-compliant via cmark-gfm, actively maintained.
+
+### Decision
+Use `swift-markdown-ui`. It provides composable, styleable SwiftUI views backed by cmark-gfm.
+
+### Consequences
+- GFM (GitHub Flavoured Markdown) is fully supported.
+- Theming is built-in (GitHub, DocC, Basic themes available out of the box).
+- Adds a package dependency; cmark-gfm is a C library compiled as part of the package.
+
+---
+
+## ADR-003 — Read-only viewer, no editing
+
+**Date:** 2026-05-13  
+**Status:** Accepted
+
+### Context
+The product brief is a *viewer*, not an editor. Adding write support introduces complexity (dirty state, conflict resolution, file coordination) that is out of scope.
+
+### Decision
+`MarkdownDocument.writableContentTypes` is empty. `fileWrapper(configuration:)` throws immediately. The New Item command is hidden.
+
+### Consequences
+- Users cannot accidentally modify files.
+- Future editing support would require a significant rework of the document model and entitlements.
+
+---
+
+## ADR-004 — Per-document preferences via @AppStorage
+
+**Date:** 2026-05-13  
+**Status:** Accepted
+
+### Context
+Font size and theme are display preferences. They could be:
+1. Per-document (stored in the file or alongside it) — complex, modifies nothing.
+2. Global (single UserDefaults value) — simple, applies to all windows.
+
+### Decision
+Use `@AppStorage` with a single global key. All windows share the same font size and theme preference.
+
+### Consequences
+- Preferences persist across launches automatically.
+- All open documents share the same display settings (acceptable for a viewer).
+- No per-document customisation (could be revisited later).
+
+---
+
+## ADR-005 — Search as line filter, not highlight
+
+**Date:** 2026-05-13  
+**Status:** Accepted
+
+### Context
+Users need to locate content in large markdown files. Options:
+1. Highlight matching text in place.
+2. Filter: show only lines containing the search term.
+
+### Decision
+Filter approach — split document by newline, keep only lines matching the search term. Simple to implement, works well for structured documents.
+
+### Consequences
+- Context around matches is lost (user sees only matching lines).
+- No match count or navigation between matches.
+- Implementation is ~5 lines of code.
+- Can be upgraded to in-place highlighting later if needed.

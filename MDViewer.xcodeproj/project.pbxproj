@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C07ADE52FB49BE00029786C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C07ADE42FB49BE00029786C /* Theme.swift */; };
+		0C07ADEC2FB49F1A0029786C /* DocumentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C07ADEB2FB49F1A0029786C /* DocumentSection.swift */; };
+		0C07ADEE2FB49F1A0029786C /* OutlineSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C07ADED2FB49F1A0029786C /* OutlineSidebarView.swift */; };
 		4D861C09522F138B17B2EFCD /* MDViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CCC5A27526C86F1BB19866 /* MDViewerApp.swift */; };
 		70D7AEF2D01DFE1F3B8D1CFD /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8373B23202E3D4A354074E4A /* MarkdownUI */; };
 		A1B1788E63C280578CBD2A99 /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B5EECC9DA43854137CCA4F /* MarkdownDocument.swift */; };
@@ -15,11 +18,18 @@
 
 /* Begin PBXFileReference section */
 		01CB89DA2B075F37F80CCDAD /* MDViewer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MDViewer.entitlements; sourceTree = "<group>"; };
+		0C07ADE42FB49BE00029786C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		0C07ADE72FB49C2E0029786C /* Architecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Architecture.md; sourceTree = "<group>"; };
+		0C07ADE82FB49C2E0029786C /* Decisions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Decisions.md; sourceTree = "<group>"; };
+		0C07ADE92FB49C2F0029786C /* Design.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Design.md; sourceTree = "<group>"; };
+		0C07ADEA2FB49C2F0029786C /* UIDesign.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = UIDesign.md; sourceTree = "<group>"; };
+		0C07ADEB2FB49F1A0029786C /* DocumentSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSection.swift; sourceTree = "<group>"; };
+		0C07ADED2FB49F1A0029786C /* OutlineSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineSidebarView.swift; sourceTree = "<group>"; };
 		A36B10A85484ABEC4EB3EFD8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2B94D6ECFF439ABF8F84105 /* MDViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B5EECC9DA43854137CCA4F /* MarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
 		E0CCC5A27526C86F1BB19866 /* MDViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDViewerApp.swift; sourceTree = "<group>"; };
-		E8B10415F03AE42AE0BE7478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E8B10415F03AE42AE0BE7478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,11 +52,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0C07ADE62FB49BE10029786C /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				0C07ADE72FB49C2E0029786C /* Architecture.md */,
+				0C07ADE82FB49C2E0029786C /* Decisions.md */,
+				0C07ADE92FB49C2F0029786C /* Design.md */,
+				0C07ADEA2FB49C2F0029786C /* UIDesign.md */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		948C07D6D92DE79B515C2B00 = {
 			isa = PBXGroup;
 			children = (
 				C390773B988CC4EA09B171D4 /* Sources */,
 				09BD76EE28C792BB9AEEBF8B /* Products */,
+				0C07ADE62FB49BE10029786C /* Documents */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +80,9 @@
 				D7B5EECC9DA43854137CCA4F /* MarkdownDocument.swift */,
 				01CB89DA2B075F37F80CCDAD /* MDViewer.entitlements */,
 				E0CCC5A27526C86F1BB19866 /* MDViewerApp.swift */,
+				0C07ADE42FB49BE00029786C /* Theme.swift */,
+				0C07ADEB2FB49F1A0029786C /* DocumentSection.swift */,
+				0C07ADED2FB49F1A0029786C /* OutlineSidebarView.swift */,
 			);
 			path = MDViewer;
 			sourceTree = "<group>";
@@ -133,7 +158,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C07ADEE2FB49F1A0029786C /* OutlineSidebarView.swift in Sources */,
 				BF6223C28FFF82CAA235F223 /* ContentView.swift in Sources */,
+				0C07ADEC2FB49F1A0029786C /* DocumentSection.swift in Sources */,
+				0C07ADE52FB49BE00029786C /* Theme.swift in Sources */,
 				4D861C09522F138B17B2EFCD /* MDViewerApp.swift in Sources */,
 				A1B1788E63C280578CBD2A99 /* MarkdownDocument.swift in Sources */,
 			);
@@ -203,19 +231,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sources/MDViewer/MDViewer.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 7X2XV24BPN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sources/MDViewer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MDViewer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = za.co.plouton.mdviewer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ploutonconsulting.mdviewer;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.10;
 			};
@@ -289,19 +321,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sources/MDViewer/MDViewer.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 7X2XV24BPN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sources/MDViewer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MDViewer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = za.co.plouton.mdviewer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ploutonconsulting.mdviewer;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.10;
 			};

@@ -4,7 +4,7 @@ import SwiftUI
 struct MDViewerApp: App {
     var body: some Scene {
         DocumentGroup(viewing: MarkdownDocument.self) { config in
-            ContentView(document: config.document)
+            ContentView(document: config.document, fileURL: config.fileURL)
                 .navigationTitle(config.fileURL?.lastPathComponent ?? "Untitled")
         }
         .commands {
