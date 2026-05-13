@@ -1,0 +1,76 @@
+name: MDViewer
+options:
+  bundleIdPrefix: za.co.plouton
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+packages:
+  MarkdownUI:
+    url: https://github.com/gonzalezreal/swift-markdown-ui
+    from: 2.4.1
+
+targets:
+  MDViewer:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/MDViewer
+    resources:
+      - path: Sources/Resources
+        optional: true
+    info:
+      path: Sources/MDViewer/Info.plist
+      properties:
+        CFBundleDisplayName: MD Viewer
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        LSApplicationCategoryType: public.app-category.developer-tools
+        LSMinimumSystemVersion: "14.0"
+        NSHumanReadableCopyright: "© 2026 Pierre Oosthuizen"
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Markdown Document
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - net.daringfireball.markdown
+              - public.plain-text
+            CFBundleTypeExtensions:
+              - md
+              - markdown
+              - mdown
+              - mkd
+              - mkdn
+              - mdtxt
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: net.daringfireball.markdown
+            UTTypeDescription: Markdown Document
+            UTTypeConformsTo:
+              - public.plain-text
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - md
+                - markdown
+                - mdown
+                - mkd
+                - mkdn
+              public.mime-type:
+                - text/markdown
+    entitlements:
+      path: Sources/MDViewer/MDViewer.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.files.user-selected.read-only: true
+        com.apple.security.files.bookmarks.app-scope: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: za.co.plouton.mdviewer
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.10"
+        GENERATE_INFOPLIST_FILE: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_STYLE: Automatic
+        DEAD_CODE_STRIPPING: YES
+    dependencies:
+      - package: MarkdownUI
