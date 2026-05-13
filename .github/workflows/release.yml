@@ -1,0 +1,118 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    env:
+      SCHEME: MDViewer
+      CONFIGURATION: Release
+      APP_NAME: MDViewer
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Derive version
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Building version ${VERSION}"
+
+      - name: Archive
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project MDViewer.xcodeproj \
+            -scheme "$SCHEME" \
+            -configuration "$CONFIGURATION" \
+            -destination 'generic/platform=macOS' \
+            -archivePath "build/${APP_NAME}.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="-" \
+            archive
+
+      - name: Export .app
+        run: |
+          mkdir -p build/export
+          cp -R "build/${APP_NAME}.xcarchive/Products/Applications/${APP_NAME}.app" build/export/
+
+      - name: Ad-hoc codesign
+        run: |
+          codesign --force --deep --sign - "build/export/${APP_NAME}.app"
+
+      - name: Create zip
+        id: zip
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          ZIP_NAME="${APP_NAME}-${VERSION}.zip"
+          cd build/export
+          ditto -c -k --sequesterRsrc --keepParent "${APP_NAME}.app" "../../${ZIP_NAME}"
+          cd ../..
+          SHA256=$(shasum -a 256 "${ZIP_NAME}" | awk '{print $1}')
+          SIZE=$(stat -f%z "${ZIP_NAME}")
+          echo "zip_name=${ZIP_NAME}" >> "$GITHUB_OUTPUT"
+          echo "sha256=${SHA256}" >> "$GITHUB_OUTPUT"
+          echo "## Release ${VERSION}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Artifact:** \`${ZIP_NAME}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Size:** ${SIZE} bytes" >> "$GITHUB_STEP_SUMMARY"
+          echo "**SHA256:** \`${SHA256}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Update the Homebrew cask:" >> "$GITHUB_STEP_SUMMARY"
+          echo "\`\`\`ruby" >> "$GITHUB_STEP_SUMMARY"
+          echo "version \"${VERSION}\"" >> "$GITHUB_STEP_SUMMARY"
+          echo "sha256 \"${SHA256}\"" >> "$GITHUB_STEP_SUMMARY"
+          echo "\`\`\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          ZIP_NAME="${{ steps.zip.outputs.zip_name }}"
+          SHA256="${{ steps.zip.outputs.sha256 }}"
+
+          NOTES=$(cat <<EOF
+          ## MDViewer ${VERSION}
+
+          Native macOS markdown viewer — SwiftUI + MarkdownUI.
+
+          ### Install via Homebrew
+
+          \`\`\`bash
+          brew tap ploutonconsulting/tap
+          brew install --cask mdviewer
+          \`\`\`
+
+          ### Manual install
+
+          1. Download \`${ZIP_NAME}\`
+          2. Unzip → drag \`MDViewer.app\` to \`/Applications\`
+          3. First launch: right-click → Open (app is ad-hoc signed, not notarised)
+
+          ### Artifact
+
+          - SHA256: \`${SHA256}\`
+          EOF
+          )
+
+          gh release create "v${VERSION}" \
+            --title "MDViewer ${VERSION}" \
+            --notes "${NOTES}" \
+            "${ZIP_NAME}"
