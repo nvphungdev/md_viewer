@@ -1,6 +1,6 @@
 name: MDViewer
 options:
-  bundleIdPrefix: za.co.plouton
+  bundleIdPrefix: com.ploutonconsulting
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
@@ -64,7 +64,7 @@ targets:
         com.apple.security.files.bookmarks.app-scope: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: za.co.plouton.mdviewer
+        PRODUCT_BUNDLE_IDENTIFIER: com.ploutonconsulting.mdviewer
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "5.10"
