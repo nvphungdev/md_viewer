@@ -123,6 +123,7 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					9A5FCE18BDAE8C363B2A821C = {
+						DevelopmentTeam = 7X2XV24BPN;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -240,8 +241,9 @@
 				CODE_SIGN_ENTITLEMENTS = Sources/MDViewer/MDViewer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 7X2XV24BPN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sources/MDViewer/Info.plist;
@@ -326,8 +328,9 @@
 				CODE_SIGN_ENTITLEMENTS = Sources/MDViewer/MDViewer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 7X2XV24BPN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sources/MDViewer/Info.plist;

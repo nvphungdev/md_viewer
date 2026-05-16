@@ -67,7 +67,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.ploutonconsulting.mdviewer
         MARKETING_VERSION: "0.1.1"
-        CURRENT_PROJECT_VERSION: "1"
+        CURRENT_PROJECT_VERSION: "2"
+        DEVELOPMENT_TEAM: "7X2XV24BPN"
         SWIFT_VERSION: "5.10"
         GENERATE_INFOPLIST_FILE: NO
         ENABLE_HARDENED_RUNTIME: YES
