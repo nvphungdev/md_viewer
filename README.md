@@ -4,6 +4,24 @@ Native macOS markdown viewer built with SwiftUI and [MarkdownUI](https://github.
 
 Fast, document-based reader for `.md` files with themed rendering, outline navigation, and live filtering.
 
+## Install
+
+### Homebrew (recommended)
+
+```bash
+brew tap ploutonconsulting/tap
+brew install --cask mdviewer
+```
+
+Update later with `brew upgrade --cask mdviewer`.
+
+### Manual
+
+1. Grab the latest `MDViewer-<version>.zip` from [Releases](https://github.com/ploutonconsulting/md_viewer/releases/latest).
+2. Unzip and drag `MDViewer.app` into `/Applications`.
+
+Releases are signed with a Developer ID and notarized by Apple — Gatekeeper opens them directly.
+
 ## Features
 
 - GitHub Flavored Markdown rendering
@@ -46,7 +64,6 @@ See [`Documents/Architecture.md`](Documents/Architecture.md), [`Documents/Design
 - WKWebView fallback for Mermaid + KaTeX
 - PDF export
 - Tabs
-- App Store signing + notarization
 
 ## Contributing
 
