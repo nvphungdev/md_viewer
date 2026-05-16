@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an enhancement to MD Viewer
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User story / problem
+      description: What are you trying to do, and what's getting in the way?
+      placeholder: As a markdown writer I want ... so that ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: Describe the behavior you'd like. Mockups welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: Other approaches you ruled out, and why.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      placeholder: Screenshots, related issues, references.

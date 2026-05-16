@@ -67,7 +67,9 @@ See [`Documents/Architecture.md`](Documents/Architecture.md), [`Documents/Design
 
 ## Contributing
 
-Issues and pull requests welcome. Please open an issue to discuss larger changes before submitting a PR.
+Issues and pull requests welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and PR expectations. Participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). Security issues: see [SECURITY.md](SECURITY.md).
+
+Good places to start: issues tagged [`good first issue`](https://github.com/ploutonconsulting/md_viewer/labels/good%20first%20issue) and [`help wanted`](https://github.com/ploutonconsulting/md_viewer/labels/help%20wanted).
 
 ## License
 

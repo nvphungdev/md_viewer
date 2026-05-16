@@ -1,0 +1,52 @@
+name: Bug report
+description: Something in MD Viewer behaves incorrectly
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+      placeholder: When I open a markdown file with X, MD Viewer does Y instead of Z.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Minimal reproduction. Attach a sample `.md` file if relevant.
+      placeholder: |
+        1. Open MDViewer
+        2. Open file ...
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      placeholder: "14.5 (Sonoma) / 15.0 (Sequoia) / ..."
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: MD Viewer version
+      description: Find it in MDViewer → About MDViewer.
+      placeholder: "0.1.1 (build 2)"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console / crash logs
+      description: Paste any relevant output from Console.app or a crash report.
+      render: text
