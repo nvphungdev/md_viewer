@@ -71,6 +71,10 @@ Issues and pull requests welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for set
 
 Good places to start: issues tagged [`good first issue`](https://github.com/ploutonconsulting/md_viewer/labels/good%20first%20issue) and [`help wanted`](https://github.com/ploutonconsulting/md_viewer/labels/help%20wanted).
 
+## Privacy
+
+MD Viewer collects nothing and makes no network requests. See [PRIVACY.md](PRIVACY.md) for the full policy.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

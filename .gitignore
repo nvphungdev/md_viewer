@@ -9,11 +9,11 @@ build/
 .swiftpm/
 Pods/
 
-# Xcode archive / export output
-Build/
-Releases/
-MDViewer/
-MDViewer */
+# Xcode archive / export output (root-anchored)
+/Build/
+/Releases/
+/MDViewer/
+/MDViewer */
 *.xcarchive/
 
 # Local tooling
