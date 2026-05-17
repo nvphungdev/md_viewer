@@ -28,7 +28,7 @@ targets:
         CFBundleIconFile: AppIcon
         LSApplicationCategoryType: public.app-category.developer-tools
         LSMinimumSystemVersion: "14.0"
-        NSHumanReadableCopyright: "© 2026 Pierre Oosthuizen"
+        NSHumanReadableCopyright: "© 2026 Plouton Consulting (Pty) Ltd."
         CFBundleDocumentTypes:
           - CFBundleTypeName: Markdown Document
             CFBundleTypeRole: Viewer
